@@ -1,0 +1,23 @@
+{
+  "name": "pedemoca",
+  "version": "1.0.0",
+  "description": "Criação do site da loja Pé de Moça",
+  "main": "index.html",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/gustavoSoriano/Loja-pe-de-moca.git"
+  },
+  "author": "otavio <taviogui@gmail.com>",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/gustavoSoriano/Loja-pe-de-moca/issues"
+  },
+  "homepage": "https://github.com/gustavoSoriano/Loja-pe-de-moca#readme",
+  "dependencies": {
+    "axios": "^0.16.1",
+    "bootstrap": "^4.0.0-alpha.6"
+  }
+}
