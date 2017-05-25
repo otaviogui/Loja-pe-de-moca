@@ -115,7 +115,6 @@ i{
 }
 .card img{
     width: 100%;
-    height: auto;
     border-radius:0 12px 12px 0 ;
     border:1px solid rgba(#fff, #fff, #fff, 0.3) ;
     justify-content: center;
@@ -129,6 +128,27 @@ i{
 #preco-produto{
    
 }
+#newletter{
+    background:linear-gradient( 75deg, #b389f9, #9560ee,#6739b6 ); 
+    /*background-color: #b389f9;*/
+}
+#newletter h4{
+    color:white;
+    text-align: center;
+    margin-top: 10%;
+}
+.btn{margin-top: 3%;}
+#newletter p{
+    color:#ccc;
+    text-align:center;
+    font-size:0.8rem;
+    margin-top: 3%;
+}
+
+#footer{
+background-color: #ccc;
+}
+
 
 .legenda-box-fluid{
     margin-top:-15px !important;
