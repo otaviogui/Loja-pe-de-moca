@@ -114,16 +114,19 @@ i{
     margin-bottom:10px;
 }
 .card img{
-    width: 40%;
+    width: 100%;
     height: auto;
     border-radius:0 12px 12px 0 ;
     border:1px solid rgba(#fff, #fff, #fff, 0.3) ;
     justify-content: center;
-    align:left;
-
 }
-.card article{
+#desc-produto{
+    text-align: right;
+    justify-content: top;
+    white-space: pre ;
     
+}
+#preco-produto{
    
 }
 
