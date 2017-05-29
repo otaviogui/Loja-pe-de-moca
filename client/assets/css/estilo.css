@@ -1,4 +1,6 @@
+
 @import url('https://fonts.googleapis.com/css?family=Comfortaa');
+
 
 *{box-sizing: border-box;font-family: 'Comfortaa', cursive;}
 body{font-size:100%;}
@@ -34,7 +36,8 @@ header{
     height:10vh;
     max-height:90px;
     min-height:70px;
-    background-color:#6739b6;
+    /*background-color:#6739b6;*/
+    background:linear-gradient( 75deg,#B5A1EE, #7F4CEE,#6739b6 );
     display:flex;
     justify-content: space-between;
     align-items: center;
@@ -45,8 +48,9 @@ header{
 
 
 #logo{
-    width:130px;
-    filter:invert(100%);
+    width:100px;
+    /*filter:invert(100%);*/
+    cursor: pointer;
 }
 
 i{
@@ -77,9 +81,13 @@ i{
 #banner{
     margin-top:22vh;
 }
-
 #banner h1{
-    text-align:center;
+    margin-top:30px;
+    color: #9560ee;
+    text-align: center;
+    font-family: "verdana" Verdana;
+}
+#banner h2{
     margin-top:30px;
 }
 
@@ -87,7 +95,7 @@ i{
     display:block;
     margin:auto;
     width:90%;
-    text-align:justify;
+    text-align:center;
     margin-top:30px;
     margin-bottom:50px;
 }
@@ -106,27 +114,34 @@ i{
     padding-bottom:5%;
 }
 
-.card{
+.cartoes{
+    cursor: pointer;
     width:90%;
     height:120px;
     background-color:#fff;
     margin:auto;
     margin-bottom:10px;
+    display:flex;
+    justify-content:between;
 }
-.card img{
-    width: 100%;
+.box-img-cartoes{
+    width:40%;
+}
+.cartoes img{
+    width: 90%;
     border-radius:0 12px 12px 0 ;
     border:1px solid rgba(#fff, #fff, #fff, 0.3) ;
-    justify-content: center;
+
 }
-#desc-produto{
-    text-align: right;
-    justify-content: top;
-    white-space: pre ;
-    
+.infor-produto{
+    width:60%;
+    height:100%;}
+.desc-produto{
+    margin-top:5%;
+    font-size: 1.1em;
 }
-#preco-produto{
-   
+.preco-produto{
+   color: red;
 }
 #newletter{
     background:linear-gradient( 75deg, #b389f9, #9560ee,#6739b6 ); 
@@ -146,10 +161,31 @@ i{
 }
 
 #footer{
-background-color: #ccc;
+background:linear-gradient( 75deg,#B5A1EE, #7F4CEE,#6739b6 );
+height: 220px !important;
+min-height: 200px;
+max-height: 280px;
+
 }
 
+.sociais{
+    margin-top: 15%;
+   text-align: center;
+}
+.sociais h4{color:white; 
+margin-bottom: 5%;
+}
+.sociais i{
+    width: 30%;
+    min-width: 40px;
+    max-width: 80px;
+    height: 30%;
+    min-height: 40px;
+    max-width: 80px;
+    font-size: 0.8em;
+    margin-left: 5%;
 
+}
 .legenda-box-fluid{
     margin-top:-15px !important;
     max-width:120px;
