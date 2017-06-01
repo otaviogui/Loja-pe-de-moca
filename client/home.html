@@ -13,6 +13,17 @@
 </head>
 
 <body>
+ <!--botão menu para mobile -->
+    <input type="checkbox" id="check" hidden/>
+		<label for="check" id="icon" >+</label>
+
+		<nav id="parent-menu-mobile" >
+			<div class="link">Menu <i class="fa fa-bars fa-2x" aria-hidden="true"></i></div>
+			<div class="link">Pesquisa <i class="fa fa-search fa-3x" aria-hidden="true"></i></div>
+			<div class="link">Ajuda <i class="fa fa-question" aria-hidden="true"></i></div>
+			<div class="link">Seu carrinho<i class="fa fa-shopping-cart fa-2x" aria-hidden="true"></i></div>
+		</nav>
+
     <div class="container-fluid">
         <div id="login-mobile">
             <i class="icon-users">account_circle</i> Faça Login
@@ -22,11 +33,11 @@
             <header>
                 <div class="row">
                     <div id="topo" class="col-sm-12">
-                        <img src="./assets/img/logo.png" id="logo" alt="LogoMarca" />
+                        <img src="./assets/img/logo-mobile.png" id="logo" alt="LogoMarca" />
                         <div><i class="icon-cart"></i> 22.34 </div>
                     </div>
 
-                    <ul id="itens-menu" class="col-sm-12">
+                    <ul id="itens-menu" class="col-sm-12" style="display:none" >
                         <li>Home</li>
                         <li>Calçados</li>
                         <li>Contato</li>
@@ -38,7 +49,7 @@
 
         <div class="row">
             <div id="banner" class="col-sm-12">
-                <h1>Pé de Moça </h1>
+                <h1> <span>Pé de</span> Moça </h1>
                 <p>A sua loja dedicada para nós, mulheres amante de estilo e conforto no nossos andar</p>
             </div>
         </div>
@@ -143,13 +154,14 @@
              <div class="box-fluid col-sm-12 " id="footer">
                      <div  class="sociais " alt="rede sociais"> 
                         <h4 class="title">Redes Sociais</h4>
-                        <i class="icon-facebook" alt="Facebook - curta nossa fã-pág"><a href="facebook"></a></i> 
-                        <i class="fa fa-instagram" aria-hidden="true" alt="Instagram - curta nosso mural de fotos"><a href="instagram"></a></i> 
-                        <i class="icon-whatsapp" alt="Whattsapp - nos chame no whattsapp"><a href="whattsapp"></a></i> 
+                            <i class="fa fa-facebook" aria-hidden="true" alt="Facebook - curta nossa fã-pág"><a href="facebook"></a></i> 
+                            <i class="fa fa-instagram" aria-hidden="true" alt="Instagram - curta nosso mural de fotos"><a href="instagram"></a></i> 
+                            <i class="fa fa-whatsapp" aria-hidden="true" alt="Whattsapp - nos chame no whattsapp"><a href="whattsapp"></a></i>
+                        
                         <hr/>
                         
                     </div>
-                    <div class="col-sm-10 align-self-start">
+                    <div class="col-sm-10 align-self-start" style="bottom:0; ">
                         <small>&copy; Desenvolvido por Otávio Guilherme</small>    
                     </div>    
                  </div>  
@@ -157,7 +169,7 @@
          </div>
 
     </div>
-
+    <script src="https://use.fontawesome.com/c5e49dbd38.js"></script>
     <script src="../node_modules/jquery/dist/jquery.min.js"></script>
     <script src="../node_modules/tether/dist/js/tether.js"></script>
     <script src="../node_modules/bootstrap/dist/js/bootstrap.min.js"></script>

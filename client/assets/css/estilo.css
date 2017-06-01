@@ -48,7 +48,7 @@ header{
 
 
 #logo{
-    width:100px;
+    width:120px;
     /*filter:invert(100%);*/
     cursor: pointer;
 }
@@ -85,8 +85,13 @@ i{
     margin-top:30px;
     color: #9560ee;
     text-align: center;
-    font-family: "verdana" Verdana;
+    font-family: Verdana !important;
 }
+
+#banner h1 span{
+    color:black;
+}
+
 #banner h2{
     margin-top:30px;
 }
@@ -163,8 +168,9 @@ i{
 #footer{
 background:linear-gradient( 75deg,#B5A1EE, #7F4CEE,#6739b6 );
 height: 220px !important;
-min-height: 200px;
-max-height: 280px;
+min-height: 400px;
+max-height: 1000px;
+bottom: 0;
 
 }
 
@@ -176,14 +182,18 @@ max-height: 280px;
 margin-bottom: 5%;
 }
 .sociais i{
-    width: 30%;
-    min-width: 40px;
-    max-width: 80px;
-    height: 30%;
-    min-height: 40px;
-    max-width: 80px;
-    font-size: 0.8em;
-    margin-left: 5%;
+    width: 40% ;
+    min-width: 70px   ;
+    max-width: 120px ;
+    height: 40% ;
+    min-height: 70px ;
+    max-width: 120px ;
+    font-size: 1em ;
+    margin-left: 5% ;
+    display: inline-flex !important;
+    justify-content: center;
+    align-items: center;
+    white-space: nowrap;
 
 }
 .legenda-box-fluid{
@@ -196,4 +206,46 @@ margin-bottom: 5%;
     margin:auto;
     text-align: center;
     margin-bottom:30px;
+}
+
+
+/*btn-menu - mobile */
+#icon{transition:200ms ease-in-out;cursor:pointer;z-index:400;position:fixed;right:20px;bottom:20px;width:50px;height:50px;border-radius:50%;display:flex;align-items:center;justify-content:center;background:linear-gradient( 75deg, #b389f9, #9560ee,#6739b6 );color:#fff;font-size:1.5em;}
+			#parent-menu-mobile{ cursor:pointer; z-index: 300; position:fixed;top:0;transition:150ms ease-in-out;opacity:0;right:0;bottom:0;left:0;background-color:rgba(0,0,0,.5);display:flex;flex-direction:column;justify-content:flex-end;align-items:flex-end;padding-right:30px;padding-bottom:80px;}
+            .link{display:flex;align-items:center;margin-bottom:10px;cursor:pointer;position:fixed;bottom:-80%;transition:1s;}
+            #parent-menu-mobile i{ width: 30px; height: 30px; border-radius:30px; background-color: rgba(255, 255, 255, 0.3); color:white;}
+            .fa{cursor:pointer; font-size:20px !important; display: flex !important; justify-content: center !important; align-items: center !important;}
+			#check:checked ~ #icon
+			{
+				transform: rotate(360deg);
+			}
+			
+			#check:checked ~ #parent-menu-mobile
+			{
+				opacity:1;
+				color:#fff;
+			}
+		
+			#check:checked ~ #parent-menu-mobile .link:nth-child(1)
+			{
+				bottom:250px;
+				transition:200ms ease-in-out;
+			}
+			#check:checked ~ #parent-menu-mobile .link:nth-child(2)
+			{
+				bottom:200px;
+				transition:400ms ease-in-out;
+			}		
+			#check:checked ~ #parent-menu-mobile .link:nth-child(3)
+			{
+				bottom:150px;
+				transition:800ms ease-in-out;
+			}		
+			#check:checked ~ #parent-menu-mobile .link:nth-child(4)
+			{
+				bottom:100px;
+				transition:900ms ease-in-out;
+			}
+@media screen (min-width:480px){
+
 }
