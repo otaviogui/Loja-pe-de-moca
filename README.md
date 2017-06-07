@@ -11,4 +11,6 @@ Maneira de se organizar é o Trello (https://trello.com/b/Icgckuqi/pe-de-moca-si
 * Otávio Guilherme
 
 # Como iniciar o projeto?
-Index.html
+npm install
+npm start
+localhost:3000
