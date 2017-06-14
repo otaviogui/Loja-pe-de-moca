@@ -1,0 +1,31 @@
+admin = {
+	login, pass
+}
+
+clientes = {
+	cpf,nome,email,rg,rua,numero,bairro,cidade,estado,telefones[], login, pass
+}
+
+seguimento = {
+	 descricao
+}
+ 
+fornecedores = {
+	cnpj,nome,email,seguimento{},rua,numero,bairro,cidade,estado,telefones{}
+}
+
+produtos = {
+	descricao,fornecedor{},quantidade,marca,modelo, preco_compra, preco_venda, promocao{status(bool), desconto}
+}
+
+vendas = {
+	cliente_id,data,valor,forma_pagamento, lucro, itens_vendidos[produto{}]
+}
+
+cod_promocional = {
+	token,desconto,validade
+}
+
+newsletter = {
+	email,valor
+}
