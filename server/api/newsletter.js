@@ -1,14 +1,12 @@
 /*
   GERENCIA NEWSLETTER
 */
-
 const jwt      = require('jsonwebtoken')
 
 /*
   secret do admin - alguns endPoints só serão executados pelo admin
  */
 let secret     = 'admin_secret'
-
 
 module.exports = (server) => {
   const db = require('../db.connection.js')("newsletter.db")
@@ -45,18 +43,9 @@ module.exports = (server) => {
     res.json(newsletter)
   })
 
-
-
   server.post('/newsletter/send', async (req, res) => {
     res.json("ENVIAR E-MAILS NEWSLETTER")
   })
-
-
-
-
-
-
-
 
 
 /**
@@ -70,6 +59,4 @@ module.exports = (server) => {
       res.status(500).send(err.message)
     }
   })
-
-
 }

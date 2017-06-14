@@ -50,9 +50,6 @@ module.exports = server => {
     res.json(produto)
   })
 
-
-
-
 /**
   ROTAS ACESSÍVEIS AO USUÁRIO
  */
@@ -67,6 +64,4 @@ module.exports = server => {
     if (!produtos)    return res.status(404).send('Not found')
     res.json(produtos)
   })
-
-
 }

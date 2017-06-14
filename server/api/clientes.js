@@ -8,7 +8,6 @@ const jwt      = require('jsonwebtoken')
  */
 let secret     = 'admin_secret'
 
-
 module.exports = server => {
   const db = require('../db.connection.js')("clientes.db")
 
@@ -55,13 +54,6 @@ module.exports = server => {
     res.json(cliente)
   })
 
-
-
-
-
-
-
-
 /**
   ROTAS ACESSÍVEIS AO USUÁRIO
  */
@@ -73,8 +65,6 @@ module.exports = server => {
       res.status(500).send(err.message)
     }
   })
-
-
 
 /**
     QUANDO O USUÁRIO FIZER LOGIN, SE VÁLIDO, RETORNAREI TODOS SEUS DADOS (INCLUSIVE SEU HISTÓRICO DE COMPRAS), SERA MANTIDO SESSIONSTORAGE 

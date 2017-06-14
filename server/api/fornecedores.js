@@ -1,7 +1,6 @@
 /*
   CRUD DE FORNECEDOR
 */
-
 const jwt      = require('jsonwebtoken')
 
 /*

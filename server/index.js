@@ -1,6 +1,7 @@
 const Express    = require('express')
 const BodyParser = require('body-parser')
 const server     = Express()
+const fs         = require("fs")
 
 server.use(BodyParser.json())
 server.use(Express.static('client'))

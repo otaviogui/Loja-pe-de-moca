@@ -52,6 +52,5 @@ module.exports = server => {
     const admin     = await db.findOne(filter)
     res.json(admin)
   })
-
-
+  
 }
