@@ -74,10 +74,19 @@ module.exports = server => {
     }
   })
 
+
+
+/**
+    QUANDO O USUÁRIO FIZER LOGIN, SE VÁLIDO, RETORNAREI TODOS SEUS DADOS (INCLUSIVE SEU HISTÓRICO DE COMPRAS), SERA MANTIDO SESSIONSTORAGE 
+ */
   server.post('/cliente/login', async (req, res) => {
-    const filter    = { _id: req.params._id || req.body._id }
-    const cliente   = await db.findOne(filter)
-    if (!cliente) return res.status(404).send('Not found')
-    res.json(cliente)
+    let login     = req.body.login
+    let pass      = req.body.pass
+    const cliente = await db.findOne({login:login})
+
+    if( !cliente || login !== cliente.login || pass !== cliente.pass )
+        res.status(401).json({error: 'Credenciais inválidas'}) 
+    else
+        res.json(cliente)
   })
 }

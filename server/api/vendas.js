@@ -32,21 +32,6 @@ module.exports = (server) => {
     res.json(venda)
   })
 
-  server.post('/venda', async (req, res) => {
-
-    /**
-      Pegar os produtos que chegarem aqui e atualizar a quantidade que esta saindo do estoque
-      'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoiSlBFSzJlajBjaFhDS2NERCIsImlhdCI6MTQ5NzA3MDg1NX0.7vAmmVZm7A78fKoBN4P_pR3GZcMZ_nbiTjWwhhbwfnk'
-     */
-
-    try {
-      const venda = await db.insert(req.body)
-      res.json(venda)
-    } catch (err) {
-      res.status(500).send(err.message)
-    }
-  })
-
   server.delete('/venda/:token/:_id?', async (req, res) => {
     let token = req.params.token
     await jwt.verify(token, secret, (err, data) =>{if(err)return res.status(404).send('Not found')})
@@ -57,4 +42,26 @@ module.exports = (server) => {
     const count      = await db.remove(filter)
     res.json(venda)
   })
+
+
+
+/**
+  ROTAS ACESSÍVEIS AO USUÁRIO
+ */
+  server.post('/venda', async (req, res) => {
+    /**
+      Pegar os produtos que chegarem aqui e atualizar a quantidade que esta saindo do estoque
+      'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoiSlBFSzJlajBjaFhDS2NERCIsImlhdCI6MTQ5NzA3MDg1NX0.7vAmmVZm7A78fKoBN4P_pR3GZcMZ_nbiTjWwhhbwfnk'
+     
+      ANTES DE EFETUAR ESTA VENDA, VALIDAR SE EXISTE UM USUÁRIO, PRODUTO(S) ETC...
+     
+     */
+    try {
+      const venda = await db.insert(req.body)
+      res.json(venda)
+    } catch (err) {
+      res.status(500).send(err.message)
+    }
+  })
+
 }
