@@ -2,26 +2,59 @@
   CRUD DE VENDAS
 */
 
+const jwt      = require('jsonwebtoken')
 
-module.exports = (server, db) => {
+/*
+  secret do admin - alguns endPoints só serão executados pelo admin
+ */
+let secret     = 'admin_secret'
 
-  server.get('/vendas', async (req, res) => {
-    res.json("retornar vendas")
+
+
+module.exports = (server) => {
+  const db = require('../db.connection.js')("vendas.db")
+
+  server.get('/vendas/:token', async (req, res) => {
+    let token = req.params.token
+    await jwt.verify(token, secret, (err, data) =>{if(err)return res.status(404).send('Not found')})
+
+    const vendas = await db.find({})
+    res.json(vendas)
   })
 
-  server.get('/venda/:_id', async (req, res) => {
-    res.json("retornar venda")
+  server.get('/venda/:token/:_id', async (req, res) => {
+    let token = req.params.token
+    await jwt.verify(token, secret, (err, data) =>{if(err)return res.status(404).send('Not found')})
+
+    const filter    = { _id: req.params._id }
+    const venda     = await db.findOne(filter)
+    if (!venda)      return res.status(404).send('Not found')
+    res.json(venda)
   })
 
   server.post('/venda', async (req, res) => {
-    res.json("manter venda")
+
+    /**
+      Pegar os produtos que chegarem aqui e atualizar a quantidade que esta saindo do estoque
+      'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoiSlBFSzJlajBjaFhDS2NERCIsImlhdCI6MTQ5NzA3MDg1NX0.7vAmmVZm7A78fKoBN4P_pR3GZcMZ_nbiTjWwhhbwfnk'
+     */
+
+    try {
+      const venda = await db.insert(req.body)
+      res.json(venda)
+    } catch (err) {
+      res.status(500).send(err.message)
+    }
   })
 
-  server.put('/venda', async (req, res) => {
-    res.json("alterar venda")
-  })
+  server.delete('/venda/:token/:_id?', async (req, res) => {
+    let token = req.params.token
+    await jwt.verify(token, secret, (err, data) =>{if(err)return res.status(404).send('Not found')})
 
-  server.delete('/venda/:_id?', async (req, res) => {
-    res.json("deletar venda")
+    const filter     = { _id: req.params._id}
+    const venda      = await db.findOne(filter)
+    if (!venda)        return res.status(404).send('Not found')
+    const count      = await db.remove(filter)
+    res.json(venda)
   })
 }

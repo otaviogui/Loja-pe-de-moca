@@ -22,6 +22,7 @@
     "bootstrap": "^4.0.0-alpha.6",
     "express": "^4.15.3",
     "file-system": "^2.2.2",
+    "jsonwebtoken": "^7.4.1",
     "nedb-promise": "^2.0.1"
   },
   "devDependencies": {
