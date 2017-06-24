@@ -2,7 +2,6 @@
   CRUD DE VENDAS
 */
 const jwt      = require('jsonwebtoken')
-
 /*
   secret do admin - alguns endPoints só serão executados pelo admin
  */
@@ -41,21 +40,32 @@ module.exports = (server) => {
   })
 
 
-
 /**
   ROTAS ACESSÍVEIS AO USUÁRIO
  */
   server.post('/venda', async (req, res) => {
-    /**
-      Pegar os produtos que chegarem aqui e atualizar a quantidade que esta saindo do estoque
-      'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoiSlBFSzJlajBjaFhDS2NERCIsImlhdCI6MTQ5NzA3MDg1NX0.7vAmmVZm7A78fKoBN4P_pR3GZcMZ_nbiTjWwhhbwfnk'
-     
-      ANTES DE EFETUAR ESTA VENDA, VALIDAR SE EXISTE UM USUÁRIO, PRODUTO(S) ETC...
-     
-     */
+    const DATABASEPRODUTO = require('../db.connection.js')("produtos.db")
+    let VENDA     = req.body
+    VENDA.lucro   = 0 
+    VENDA.valor   = 0 
+    let itemOld
+    let preco 
+
+    //Percorrendo os produtos e atualizando quantidade no banco
+    for(let produto of VENDA.itens_vendidos )
+    {
+      itemOld       = await DATABASEPRODUTO.findOne({_id: produto._id})
+      itemOld.quantidade = (itemOld.quantidade - produto.quantidade)
+      await DATABASEPRODUTO.update({_id: produto._id }, itemOld)
+      
+      preco = produto.promocao.status === true ? produto.promocao.oferta : produto.preco_venda
+
+      VENDA.lucro  += parseFloat( (preco - produto.preco_compra) * produto.quantidade )
+      VENDA.valor  += parseFloat( preco * produto.quantidade )
+    }
+
     try {
-      const venda = await db.insert(req.body)
-      res.json(venda)
+      res.json( await db.insert({VENDA}) )
     } catch (err) {
       res.status(500).send(err.message)
     }
