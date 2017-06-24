@@ -4,7 +4,6 @@ const server     = Express()
 const fs         = require("fs")
 const request    = require("request")
 
-
 server.use(BodyParser.json())
 server.use(Express.static('client'))
 server.use(Express.static('node_modules'))
@@ -21,11 +20,8 @@ server.get("/soriano", (req, res) =>{
 
     request(`http://localhost:3000/produto/${id_produto}`, (err, resp, body) =>{
         if (err) return res.status(404).send('Not found')
-
         res.json( JSON.parse(resp.body) )
     })
-
 })
-
 
 server.listen(3000, () => console.log('Server listening at http://localhost:3000'))

@@ -1,7 +1,6 @@
 /*
   CONFIGURAÇÕES DO ADMIN
 */
-
 const fs       = require("fs")
 const jwt      = require('jsonwebtoken')
 
@@ -12,7 +11,6 @@ let secret     = 'admin_secret'
 
 module.exports = server => {
   const db = require('../db.connection.js')("admin.db")
-
 
   server.get("/admin", async (req, res) => 
   {
@@ -55,12 +53,6 @@ module.exports = server => {
     
     fs.readFile( 'client/admin.html', (err, data) => res.end(data))
   })
-
-
-
-
-
-
 
   server.put('/admin', async (req, res) => 
   {
