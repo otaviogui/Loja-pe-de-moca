@@ -19,7 +19,7 @@ produtos = {
 }
 
 vendas = {
-	cliente_id,data,valor,forma_pagamento, lucro, itens_vendidos[produto{}]
+	cliente{},data,valor,forma_pagamento, lucro, itens_vendidos[produto{}]
 }
 
 cod_promocional = {
@@ -27,5 +27,5 @@ cod_promocional = {
 }
 
 newsletter = {
-	email,valor
+	email
 }

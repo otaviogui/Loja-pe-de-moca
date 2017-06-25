@@ -23,7 +23,9 @@
     "express": "^4.15.3",
     "file-system": "^2.2.2",
     "jsonwebtoken": "^7.4.1",
-    "nedb-promise": "^2.0.1"
+    "nedb-promise": "^2.0.1",
+    "nodemailer": "^4.0.1",
+    "request": "^2.81.0"
   },
   "devDependencies": {
     "nodemon": "^1.11.0"
