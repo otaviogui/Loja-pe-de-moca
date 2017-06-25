@@ -26,7 +26,6 @@ module.exports = server => {
     } catch (err) {
       res.status(500).send(err.message)
     }
-
   })
 
   server.put('/produto', async (req, res) => {

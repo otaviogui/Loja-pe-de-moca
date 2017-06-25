@@ -21,7 +21,6 @@ module.exports = (server) => {
   server.get('/venda/:token/:_id', async (req, res) => {
     let token = req.params.token
     await jwt.verify(token, secret, (err, data) =>{if(err)return res.status(404).send('Not found')})
-
     const filter    = { _id: req.params._id }
     const venda     = await db.findOne(filter)
     if (!venda)      return res.status(404).send('Not found')
