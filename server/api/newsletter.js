@@ -43,8 +43,42 @@ module.exports = (server) => {
     res.json(newsletter)
   })
 
-  server.post('/newsletter/send', async (req, res) => {
-    res.json("ENVIAR E-MAILS NEWSLETTER")
+  server.post('/newsletter/send', async (req, res) =>{
+    const nodemailer  = require('nodemailer')
+    const newsletters = await db.find({})
+    const assunto     = req.body.assunto
+    const mensagem    = req.body.mensagem
+
+    if(!assunto || !mensagem)return res.status(404).send('Falta assunto ou mensagem no email')
+
+    const conta = nodemailer.createTransport({
+      host: 'smtp.gmail.com',
+      port: 587,
+      secure: false,
+      tls: {
+        rejectUnauthorized: false
+      },
+      auth: {
+          user: 'email@gmail.com',
+          pass: ''
+      }
+    })
+
+    let listaEmails = []
+    for( let e of newsletters )listaEmails.push(e.email)
+
+    let mailOptions = {
+        from: 'pedemoca@gmail.com',
+        to: listaEmails.join(),
+        subject: assunto,
+        html: mensagem
+    }
+
+    conta.sendMail(mailOptions, (error, info) => {
+        if (error) res.json( {"err":error} )
+        res.json( {"lista":listaEmails.join()} )
+    })
+
   })
 
 

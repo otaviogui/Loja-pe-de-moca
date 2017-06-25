@@ -21,7 +21,6 @@ server.get("/soriano", (req, res) =>{
 
     request(`http://localhost:3000/produto/${id_produto}`, (err, resp, body) =>{
         if (err) return res.status(404).send('Not found')
-
         res.json( JSON.parse(resp.body) )
     })
 
