@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <link rel="stylesheet" href="/bootstrap/dist/css/bootstrap.min.css" />
+        <title>Login - Admin</title>
+    </head>
+
+    <body>
+		<div id="formLogin">
+            <h1>formulário de login</h1>
+            <input type="text" id="login">
+            <input type="text" id="pass">
+            <button>Login</button>
+        </div>
+
+        <script src="/axios/dist/axios.min.js"></script>
+        <script src="/jquery/dist/jquery.min.js"></script>
+        <script src="/tether/dist/js/tether.js"></script>
+        <script src="/bootstrap/dist/js/bootstrap.min.js"></script>
+
+        <script>
+            const btnLogin = document.querySelector("button")
+
+            btnLogin.addEventListener("click", () =>{
+                let login = document.querySelector("#login").value
+                let pass  = document.querySelector("#pass").value
+
+                if(login && pass)
+                {
+                    axios.post('/admin/login', {user:login, senha:pass}).then( res =>{
+                        const token = res.data.token
+                        sessionStorage.setItem("adminpedemoca", token)
+                        location.href = location.href +"/"+token
+                    }).catch(e =>{
+                        alert("Erro no login")
+                    })  
+                }
+                else
+                {
+                    alert("Informe corretamente login e pass!")
+                }
+            })
+        </script>
+    </body>
+</html>
