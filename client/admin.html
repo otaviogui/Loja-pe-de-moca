@@ -7,58 +7,28 @@
         <title>Painel de Controle</title>
     </head>
 
-    <body>
-        <h1 id="wait"><center>Aguarde, verificando credenciais...</center></h1>
-
-		<div id="painel" style="display:none">
+    <body >
+		<div id="painel">
             <h1>Bem vindo ao Painel de Controle</h1>
         </div>
 
-		<div id="formLogin" style="display:none">
-            <h1>formulário de login</h1>
-        </div>
-
-
-        <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+        <script src="/axios/dist/axios.min.js"></script>
         <script src="/jquery/dist/jquery.min.js"></script>
         <script src="/tether/dist/js/tether.js"></script>
         <script src="/bootstrap/dist/js/bootstrap.min.js"></script>
-
         <script>
-            document.addEventListener("DOMContentLoaded", () =>{
-                const wait      = document.querySelector("#wait")
-                const painel    = document.querySelector("#painel")
-                const formLogin = document.querySelector("#formLogin")
-                
-                /*
-                    Este token virá do localStorage
-                */
-                let token = {'token':'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoiSlBFSzJlajBjaFhDS2NERCIsImlhdCI6MTQ5NzA3MDg1NX0.7vAmmVZm7A78fKoBN4P_pR3GZcMZ_nbiTjWwhhbwfnk'}
-                //let token = {'token':'abcdersg'}
-                
-                if(token)
-                {
-                    axios.post('/admin', token).then( res =>{
-                        painel.style.display='block'
-                        painel.innerHTML    = res.data.dados
+            const token = sessionStorage.getItem("adminpedemoca")
 
-                        let script = document.createElement("script")
-                        let head   = document.getElementsByTagName('head')[0]
-                        script.setAttribute('type', "text/javascript")
-                        script.setAttribute('src', "/assets/js/admin.js")
-                        head.insertBefore(script, head.firstChild)
-                        wait.style.display="none"
-                    }).catch(e =>{
-                        wait.style.display="none"
-                        formLogin.style.display='block'
-                    })  
-                }
-                else
-                {
-                    wait.style.display="none"
-                    formLogin.style.display='block'
-                }
-            })
+            if(token){
+                axios.post("/admin/validar", {token:token}).then(res =>{
+                    document.body.removeAttribute("hidden")
+                }).catch(e =>{
+                    location.href = "http://localhost:3000/admin"
+                }) 
+            }else{
+                location.href = "http://localhost:3000/admin"
+            }
+
         </script>
     </body>
 </html>

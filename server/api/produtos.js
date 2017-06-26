@@ -64,4 +64,25 @@ module.exports = server => {
     if (!produtos)    return res.status(404).send('Not found')
     res.json(produtos)
   })
+
+
+  server.get('/marcasmodelosfornecedores', async (req, res) =>{
+    const produtos   = await db.find({})
+    let marcas       = []
+    let modelos      = []
+
+    const DATABASEFORNECEDORES = require('../db.connection.js')("fornecedores.db")
+    const arrfornecedores      = await DATABASEFORNECEDORES.find({})
+
+    for(let p of produtos )
+    {
+      modelos.push( p.modelo )
+      marcas.push( p.marca )
+    }
+
+    let arrModelos      = modelos.filter( (este, i) =>{return modelos.indexOf(este) == i})
+    let arrMarcas       = marcas.filter(  (este, i) =>{return marcas.indexOf(este)  == i})
+    res.json( {"marcas":arrMarcas, "modelos":arrModelos, "fornecedores":arrfornecedores} )
+  })
+
 }
