@@ -2,6 +2,7 @@
   CRUD DE PRODUTOS
 */
 const jwt      = require('jsonwebtoken')
+const multer   = require('multer')
 
 /*
   secret do admin - alguns endPoints só serão executados pelo admin
@@ -9,28 +10,49 @@ const jwt      = require('jsonwebtoken')
 let secret     = 'admin_secret'
 
 
+/*
+  Configuração necessário para cópia da imagem e alteração no nome
+ */
+var storage    = multer.diskStorage({
+  destination: function (req, file, cb) {
+    cb(null, './client/upload')
+  },
+  filename: function (req, file, cb) {
+  let ext = file.originalname.substr( file.originalname.lastIndexOf('.') + 1 ) 
+    cb(null, file.fieldname + '-' + Date.now() +'.'+ext)
+  }
+})
+var upload = multer({ storage: storage })
+
 module.exports = server => {
   const db = require('../db.connection.js')("produtos.db")
-
 
 /**
   ROTAS RESTRITAS
  */
-  server.post('/produto', async (req, res) => {
+  server.post('/produto', upload.single('imagem'), async (req, res) => {
     let token = req.body.token
     await jwt.verify(token, secret, (err, data) =>{if(err)return res.status(404).send('Not found')})
 
+    let dados = req.body
+    if( !!req.file ) dados.img = req.file.filename
+
     try {
-      const produto = await db.insert(req.body)
+      const produto = await db.insert(dados)
       res.json(produto)
     } catch (err) {
       res.status(500).send(err.message)
     }
+
   })
 
-  server.put('/produto', async (req, res) => {
+
+  server.put('/produto', upload.single('imagem'), async (req, res) => {
     let token = req.body.token
     await jwt.verify(token, secret, (err, data) =>{if(err)return res.status(404).send('Not found')})
+
+    let dados = req.body
+    if( !!req.file ) dados.img = req.file.filename
 
     const filter    = { _id: req.body._id }
     const count     = await db.update(filter, req.body)
@@ -47,6 +69,9 @@ module.exports = server => {
     const produto = await db.findOne(filter)
     if (!produto)   return res.status(404).send('Not found')
     const count   = await db.remove(filter)
+
+    //excluir a imagem no diretório
+
     res.json(produto)
   })
 

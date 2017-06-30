@@ -12,6 +12,7 @@ require('./api/admin.js')(server)
 require('./api/clientes.js')(server)
 require('./api/fornecedores.js')(server)
 require('./api/newsletter.js')(server)
+require('./api/novidadepromocao.js')(server)
 require('./api/produtos.js')(server)
 require('./api/vendas.js')(server)
 
