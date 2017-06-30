@@ -16,4 +16,4 @@ require('./api/promocoes.js')(server, db)
 require('./api/vendas.js')(server, db)
 require('./api/admin.js')(server, db)
 
-server.listen(3000, () => console.log('Server listening at http://localhost:3000'))
+server.listen(4000, () => console.log('Server listening at http://localhost:4000'))
