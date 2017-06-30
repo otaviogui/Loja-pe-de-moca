@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <link rel="stylesheet" href="/bootstrap/dist/css/bootstrap.min.css" />
+        <title>Painel de Controle</title>
+    </head>
+
+    <body >
+		<div id="painel">
+            <h1>Bem vindo ao Painel de Controle</h1>
+        </div>
+
+        <script src="/axios/dist/axios.min.js"></script>
+        <script src="/jquery/dist/jquery.min.js"></script>
+        <script src="/tether/dist/js/tether.js"></script>
+        <script src="/bootstrap/dist/js/bootstrap.min.js"></script>
+        <script>
+            const token = sessionStorage.getItem("adminpedemoca")
+
+            if(token){
+                axios.post("/admin/validar", {token:token}).then(res =>{
+                    document.body.removeAttribute("hidden")
+                }).catch(e =>{
+                    location.href = "http://localhost:3000/admin"
+                }) 
+            }else{
+                location.href = "http://localhost:3000/admin"
+            }
+
+        </script>
+    </body>
+</html>
